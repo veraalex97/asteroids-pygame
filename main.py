@@ -45,6 +45,12 @@ def main():
             drawables.draw(screen)
         pygame.display.flip()
 
+        for asteroid in asteroids:
+            for shot in shots:
+                if shot.collide(asteroid):
+                    asteroid.kill()
+                    shot.kill()
+
         dt = clock.tick(60) / 1000
 
     pygame.quit()

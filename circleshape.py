@@ -11,8 +11,12 @@ class CircleShape(pygame.sprite.Sprite):
 		self.velocity = pygame.Vector2(0, 0)
 		self.radius = radius
 
+	def collide(self, shape):
+		distance = self.position.distance_to(shape.position)
+		return distance < self.radius + shape.radius
+
 	def draw(self, screen):
 		pygame.draw.polygon(screen, "white", self.triangle(), 2)
 
 	def update(self, dt):
-		pass
+		self.position += self.velocity * dt
